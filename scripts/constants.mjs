@@ -1,5 +1,6 @@
 export const MODULE_ID = "token-action-hud-aos";
 export const MODULE_TITLE = "Token Action HUD — Age of Sigmar: Soulbound";
+export const CORE_MODULE_ID = "token-action-hud-core";
 export const SYSTEM_ID = "age-of-sigmar-soulbound";
 export const SYSTEM_TITLE = "Age of Sigmar: Soulbound";
 export const REQUIRED_CORE_API_VERSION = "2.1";

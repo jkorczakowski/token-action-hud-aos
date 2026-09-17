@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 import {
   CATEGORY_IDS,
+  CORE_MODULE_ID,
   GROUP_IDS,
   HOOKS,
   MODULE_ID,
@@ -13,7 +14,7 @@ import {
   SYSTEM_ID
 } from "../scripts/constants.mjs";
 import { buildDefaults } from "../scripts/defaults.mjs";
-import { createCoreRegistrar } from "../scripts/main.mjs";
+import { createCoreRegistrar, installRegistration } from "../scripts/main.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -85,6 +86,35 @@ test("A02 ignores the Core ready hook for another game system", () => {
   assert.deepEqual(calls, []);
 });
 
+test("A01 registers when Core published its API before the adapter listener loaded", () => {
+  const coreModule = createFakeCore();
+  const module = { id: MODULE_ID };
+  const listeners = new Map();
+  const calls = [];
+  const hooks = {
+    on: (name, callback) => listeners.set(name, callback),
+    call: (...args) => calls.push(args)
+  };
+  const game = {
+    system: { id: SYSTEM_ID },
+    modules: new Map([
+      [CORE_MODULE_ID, coreModule],
+      [MODULE_ID, module]
+    ])
+  };
+
+  const registrar = installRegistration({ game, hooks });
+
+  assert.equal(typeof registrar, "function");
+  assert.equal(listeners.get(HOOKS.CORE_API_READY), registrar);
+  assert.equal(module.api.requiredCoreModuleVersion, REQUIRED_CORE_API_VERSION);
+  assert.equal(Object.getPrototypeOf(module.api.SystemManager), coreModule.api.SystemManager);
+  assert.deepEqual(calls, [[HOOKS.SYSTEM_READY, module]]);
+
+  assert.equal(registrar(coreModule), false);
+  assert.equal(calls.length, 1);
+});
+
 test("A01 published manager creates the AoS handlers and fresh defaults", async () => {
   const coreModule = createFakeCore();
   const module = { id: MODULE_ID };
@@ -143,7 +173,7 @@ test("A03 manifest is valid and every declared runtime path exists", async () =>
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 
   assert.equal(manifest.id, MODULE_ID);
-  assert.equal(manifest.version, "0.1.0");
+  assert.equal(manifest.version, "0.1.1");
   assert.equal(manifest.relationships.systems[0].id, SYSTEM_ID);
   assert.equal(manifest.relationships.requires[0].id, "token-action-hud-core");
   assert.equal(manifest.relationships.requires[0].compatibility.minimum, "2.1.1");

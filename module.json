@@ -2,10 +2,10 @@
   "id": "token-action-hud-aos",
   "title": "Token Action HUD — Age of Sigmar: Soulbound",
   "description": "Token Action HUD Core integration for Warhammer Age of Sigmar: Soulbound.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "url": "https://github.com/jkorczakowski/token-action-hud-aos",
   "manifest": "https://raw.githubusercontent.com/jkorczakowski/token-action-hud-aos/refs/heads/master/module.json",
-  "download": "https://github.com/jkorczakowski/token-action-hud-aos/releases/download/v0.1.0/token-action-hud-aos-0.1.0.zip",
+  "download": "https://github.com/jkorczakowski/token-action-hud-aos/releases/download/v0.1.1/token-action-hud-aos-0.1.1.zip",
   "compatibility": {
     "minimum": "14.367"
   },
