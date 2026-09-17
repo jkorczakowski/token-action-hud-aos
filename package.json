@@ -1,0 +1,10 @@
+{
+  "name": "token-action-hud-aos",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node tests/check-syntax.mjs",
+    "test": "node --test"
+  }
+}
