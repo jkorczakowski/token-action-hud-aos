@@ -103,7 +103,7 @@ npm run check
 npm test
 ```
 
-Live Foundry validation is not yet complete, so version `0.1.2` should be treated as a development release. Please report unexpected behavior through GitHub Issues.
+Live registration, HUD creation, and one native common-test workflow have passed. The full Foundry test matrix is not yet complete, so version `0.1.2` should still be treated as a development release. Please report unexpected behavior through GitHub Issues.
 
 ## Current limitations
 
@@ -112,6 +112,8 @@ Live Foundry validation is not yet complete, so version `0.1.2` should be treate
 - Party automation and multi-actor rolls are not included.
 - Resource values are summaries rather than editable controls.
 - Initiative utilities, modifier-key shortcuts, and custom themes are not included.
+- Soulbound `9.0.1` may log a Foundry 14 deprecation warning about `ChatMessage.applyRollMode` during a successful native roll. The warning originates in Soulbound's chat-message code rather than this adapter.
+- Soulbound `9.0.1` may also log a `Roll.fromData` error when using an inventory item that has no roll. The native item card still appears, but Soulbound supplies an undefined roll entry to Foundry; this adapter deliberately continues to use Soulbound's public `setupAbilityUse` workflow.
 
 ## Development
 
