@@ -3,7 +3,7 @@
 An unofficial [Token Action HUD Core](https://github.com/Larkinabout/fvtt-token-action-hud-core) system adapter for **Warhammer Age of Sigmar: Soulbound** on Foundry Virtual Tabletop.
 
 > [!IMPORTANT]
-> Version `0.1.0` is a development release. Its automated test suite passes, but the module has not yet completed the live Foundry test matrix. See [Testing status](#testing-status) before using it in an active game.
+> Version `0.1.2` is a development release. Its automated test suite passes, but the module has not yet completed the live Foundry test matrix. See [Testing status](#testing-status) before using it in an active game.
 
 ## Features
 
@@ -103,7 +103,7 @@ npm run check
 npm test
 ```
 
-Live Foundry validation is not yet complete, so version `0.1.0` should be treated as a development release. Please report unexpected behavior through GitHub Issues.
+Live Foundry validation is not yet complete, so version `0.1.2` should be treated as a development release. Please report unexpected behavior through GitHub Issues.
 
 ## Current limitations
 
